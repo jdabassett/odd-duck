@@ -15,7 +15,7 @@ let productThree = document.querySelector("#product-three");
 let imageNames = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','water-can','wine-glass'];
 let imageExt = ['jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','png','jpg','jpg','jpg','jpg'];
 let arrayObjects = [];
-let threeNumbers;
+let threeNumbers = [];
 let totalViews = 0;
 let allowedViews = 10;
 
@@ -51,13 +51,23 @@ function threeRandomNumbers(array){
   let one;
   let two;
   let three;
-
+  
   do {
     one = randomNumber(array);
     two = randomNumber(array);
     three = randomNumber(array);
-  } while( !(one !== two && two !== three && one !== three));
 
+    for (let i=0; i<threeNumbers.length; i++){
+      if (one === threeNumbers[i]){
+        one = randomNumber(array);
+      } else if (two === threeNumbers[i]){
+        two = randomNumber(array);
+      } else if (three === threeNumbers[i]) {
+        three = randomNumber(array);
+      }
+    }
+  } while( !(one !== two && two !== three && one !== three));
+  threeNumbers = [];
   threeNumbers = [one,two,three];
 }
 
