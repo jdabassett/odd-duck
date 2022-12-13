@@ -1,7 +1,10 @@
 'use strict';
 
 // ********** DOM WINDOWS **********
-let formInput = document.querySelector("#form");
+
+let buttonResults = document.querySelector("#display-results");
+let displayResults = document.querySelector("#results-container");
+
 let productParent = document.querySelector("#grid-item-products"); 
 let productOne = document.querySelector("#product-one");
 let productTwo = document.querySelector("#product-two");
@@ -17,6 +20,7 @@ let totalViews = 0;
 let allowedViews = 10;
 
 let productDOM = [productOne,productTwo,productThree];
+
 // ********** CONSTRUCTOR FUNCTIONS **********
 
 // constructor to for products
@@ -28,6 +32,7 @@ function Product(name,imgExt,location){
 }
 
 // ********** HELPER FUNCTIONS **********
+
 // make array of objects
 function makeObjects(location,arrayNames,arrayExtensions){
   for(let i = 0; i<arrayNames.length;i++){
@@ -66,12 +71,6 @@ function iterateRender(array){
   }
 }
 
-// as user input as to how many times they would like to vote
-// function handlerLoad(event){
-//   prompt("Please input how many times you would like to vote. If you don't the default amount is 25 votes");
-// }
-
-
 // parent click handler function
 function handlerClick(event){
   addViews(event.target.title);
@@ -93,12 +92,24 @@ function addViews(title){
   }
 }
 
-
+// render results
+function handlerShowResults(){
+  if (totalViews>=allowedViews){
+    for(let i=0;i<arrayObjects.length;i++){
+      let liElem = document.createElement("li");
+      liElem.textContent=`${arrayObjects[i].name} had ${arrayObjects[i].clicked} votes, and was seen ${arrayObjects[i].shown} times`;
+      displayResults.appendChild(liElem);
+    }
+    buttonResults.removeEventListener("click", handlerShowResults);
+  }else {
+    alert("Must finish voting before results can be displayed.");
+  }
+}
 
 // ********** EVENT HANDLERS **********
 
 productParent.addEventListener("click",handlerClick);
-// formInput.addEventListener("load",handlerLoad);
+buttonResults.addEventListener("click",handlerShowResults);
 
 
 
