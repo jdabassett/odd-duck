@@ -1,0 +1,30 @@
+:root {
+
+}
+
+html {
+
+}
+
+/* main header */
+header {
+  border:2px solid red;
+}
+
+
+/* main grid */
+#grid-container {
+  border:2px solid blue;
+}
+
+#grid-container>* {
+  border:2px solid brown;
+
+}
+
+
+/* main footer */
+
+footer {
+  border:2px solid green;
+}
