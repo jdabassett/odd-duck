@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
     <script src="app/app.js" defer></script>
   </head>
   <body>
@@ -15,10 +16,9 @@
     <main>
       <div id="grid-container">
 
-        <section id="grid-item-results">
-          <button id="display-results">View Results</button>
-          <ul id="results-container"></ul>
-        </section>
+        <article id="grid-item-paragraph">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum iste minus quam ut harum quia culpa, officiis quasi similique libero hic sint doloribus nesciunt, distinctio dignissimos maxime laborum? Voluptatum, incidunt.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum iste minus quam ut harum quia culpa, officiis quasi similique libero hic sint doloribus nesciunt, distinctio dignissimos maxime laborum? Voluptatum, incidunt.Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </article>
 
         <div id="grid-item-products">
           <img class="product" title="" id="product-one" src="" alt="grid-item-one">
@@ -28,10 +28,14 @@
           <img class="product" title="" id="product-three" src="" alt="grid-item-three">
         </div>
 
-        <article id="grid-item-paragraph">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores dolorem aliquam aut harum labore? Quaerat, voluptas, provident nobis itaque explicabo aspernatur ipsa reiciendis dignissimos consequuntur earum praesentium expedita dolore consectetur!
-          Repellat omnis ratione mollitia amet ipsa quae vel error dolore sed ipsam unde non doloribus obcaecati delectus, alias maxime autem cupiditate at necessitatibus eum! Itaque voluptates pariatur ut necessitatibus voluptas!</p>
-        </article>
+        <section id="grid-item-results">
+          <button id="display-results">View Results</button>
+          <section id="results-container">
+            <canvas width="" height="" id="myChart"></canvas>
+          </section>
+        </section>
+
+
 
       </div>
     </main>

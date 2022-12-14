@@ -3,7 +3,7 @@
 // ********** DOM WINDOWS **********
 
 let buttonResults = document.querySelector("#display-results");
-let displayResults = document.querySelector("#results-container");
+let displayResults = document.querySelector("#myChart");
 
 let productParent = document.querySelector("#grid-item-products"); 
 let productOne = document.querySelector("#product-one");
@@ -17,7 +17,7 @@ let imageExt = ['jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg
 let arrayObjects = [];
 let threeNumbers = [];
 let totalViews = 0;
-let allowedViews = 10;
+let allowedViews = 5;
 
 let productDOM = [productOne,productTwo,productThree];
 
@@ -67,6 +67,7 @@ function threeRandomNumbers(array){
       }
     }
   } while( !(one !== two && two !== three && one !== three));
+
   threeNumbers = [];
   threeNumbers = [one,two,three];
 }
@@ -77,7 +78,8 @@ function iterateRender(array){
     productDOM[i].src=arrayObjects[array[i]].img;
     productDOM[i].alt=arrayObjects[array[i]].name;
     productDOM[i].title=arrayObjects[array[i]].name;
-    arrayObjects[array[i]].shown++;
+    if (totalViews<allowedViews){
+      arrayObjects[array[i]].shown++;}
   }
 }
 
@@ -85,8 +87,8 @@ function iterateRender(array){
 function handlerClick(event){
   addViews(event.target.title);
   threeRandomNumbers(imageNames);
-  iterateRender(threeNumbers);
   totalViews++;
+  iterateRender(threeNumbers);
   if(totalViews >= allowedViews){
     productParent.removeEventListener("click",handlerClick);
   }
@@ -102,22 +104,56 @@ function addViews(title){
   }
 }
 
+// iterate to calculate percentage of clicks per view fo
+
 // render results
 function handlerShowResults(){
   if (totalViews>=allowedViews){
+    let arrayNames = [];
+    let arrayVotes = [];
+    let arrayViews = [];
     for(let i=0;i<arrayObjects.length;i++){
-      let liElem = document.createElement("li");
-      liElem.textContent=`${arrayObjects[i].name} had ${arrayObjects[i].clicked} votes, and was seen ${arrayObjects[i].shown} times`;
-      displayResults.appendChild(liElem);
+      arrayNames[i]=arrayObjects[i].name;
+      arrayVotes[i]=arrayObjects[i].clicked;
+      arrayViews[i]=arrayObjects[i].shown;
     }
+    console.log(arrayNames,arrayVotes,arrayViews);
+
+    let chartData = {
+      type: 'bar',
+      data: {
+        labels: arrayNames,
+        datasets: [
+          {label: '# of Votes',
+            data: arrayVotes,
+            borderWidth: 1,
+            borderColor: '#C1121F',
+            backgroundColor: '#C1121F', 
+          },
+          {label: '# times Shown',
+            data: arrayViews,
+            borderWidth: 1,
+            borderColor: '#669BBC',
+            backgroundColor: '#669BBC',
+          }]},
+      options: {scales: {y: {beginAtZero: true}}}
+    }
+
+    //render results
+    Chart.defaults.borderColor = '#003049';
+    Chart.defaults.color = '#003049';
+
+
+    new Chart(displayResults, chartData);
+    //remove event
     buttonResults.removeEventListener("click", handlerShowResults);
+    //if voting hasn't finished
   }else {
-    alert("Must finish voting before results can be displayed.");
+    alert("Must finish voting, then push 'View Results' to see your results.");
   }
 }
 
 // ********** EVENT HANDLERS **********
-
 productParent.addEventListener("click",handlerClick);
 buttonResults.addEventListener("click",handlerShowResults);
 
@@ -133,6 +169,7 @@ threeRandomNumbers(imageNames);
 
 // initial render of images
 iterateRender(threeNumbers);
+
 
 
 
