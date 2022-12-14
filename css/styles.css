@@ -35,11 +35,11 @@ main {
 #grid-container {
   /* border:1px solid brown; */
   width:90%;
-  height:90%;
-  margin: 5vh auto 5vh auto;
+  height:70vh;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(2, minmax(1fr ,400px));
   grid-column-gap: 40px;
   grid-row-gap: 40px;
 }
@@ -119,8 +119,8 @@ main {
   display:flex;
   flex-direction:row;
   justify-content: center;
-  width:90%;
-  height: 90%;
+  max-width:90%;
+  max-height: 80%;
 }
 
 #myChart {
