@@ -44,7 +44,7 @@ function getResults() {
     handlerShowResults();
 
   } else {
-    prompt("Please click 'Go to Voting Page' to finish voting. Results are not available to be viewed once voting has finished.")
+    alert("Please click 'Go to Voting Page' to finish voting. Results are not available to be viewed once voting has finished.");
   }
 }
 

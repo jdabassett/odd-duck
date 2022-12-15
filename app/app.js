@@ -2,10 +2,13 @@
 
 // ********** DOM WINDOWS **********
 
-let buttonResults = document.querySelector("#display-results");
-let displayResults = document.querySelector("#myChart");
 
-let productParent = document.querySelector("#grid-item-products"); 
+
+let buttonResults = document.querySelector("#new-page");
+buttonResults.style.visibility='hidden';
+
+
+let containerProducts = document.querySelector("#container-products"); 
 let productOne = document.querySelector("#product-one");
 let productTwo = document.querySelector("#product-two");
 let productThree = document.querySelector("#product-three");
@@ -90,8 +93,10 @@ function handlerClick(event){
   threeRandomNumbers(imageNames);
   totalViews++;
   iterateRender(threeNumbers);
+  saveToLocalStorage(arrayObjects);
   if(totalViews >= allowedViews){
-    productParent.removeEventListener("click",handlerClick);
+    buttonResults.style.visibility='visible';
+    containerProducts.removeEventListener("click",handlerClick);
   }
 }
 
@@ -111,68 +116,17 @@ function saveToLocalStorage(array){
   let JSONArray = JSON.stringify(array);
   localStorage.setItem('arrayObjectsStored',JSONArray);
   arrayObjectsReturned =JSON.parse(localStorage.getItem('arrayObjectsStored'));
-
-}
-
-// render results
-function handlerShowResults(){
-  if (totalViews>=allowedViews){
-    let arrayNames = [];
-    let arrayVotes = [];
-    let arrayViews = [];
-    for(let i=0;i<arrayObjects.length;i++){
-      arrayNames[i]=arrayObjects[i].name;
-      arrayVotes[i]=arrayObjects[i].clicked;
-      arrayViews[i]=arrayObjects[i].shown;
-    }
-
-
-    let chartData = {
-      type: 'bar',
-      data: {
-        labels: arrayNames,
-        datasets: [
-          {label: '# of Votes',
-            data: arrayVotes,
-            borderWidth: 1,
-            borderColor: '#C1121F',
-            backgroundColor: '#C1121F', 
-          },
-          {label: '# times Shown',
-            data: arrayViews,
-            borderWidth: 1,
-            borderColor: '#669BBC',
-            backgroundColor: '#669BBC',
-          }]},
-      options: {scales: {y: {beginAtZero: true}}}
-    }
-
-    //render results
-    Chart.defaults.borderColor = '#003049';
-    Chart.defaults.color = '#003049';
-
-
-    new Chart(displayResults, chartData);
-
-    //store results in localStorage
-    saveToLocalStorage(arrayObjects);
-
-    //remove event
-    buttonResults.removeEventListener("click", handlerShowResults);
-    //if voting hasn't finished
-  }else {
-    alert("Must finish voting, then push 'View Results' to see your results.");
-  }
 }
 
 // ********** EVENT HANDLERS **********
-productParent.addEventListener("click",handlerClick);
-buttonResults.addEventListener("click",handlerShowResults);
+containerProducts.addEventListener("click",handlerClick);
 
 
 
 
 // ********** EXECUTABLE **********
+
+
 //make array of objects
 makeObjects("img",imageNames,imageExt);
 
