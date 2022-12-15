@@ -19,7 +19,25 @@ header {
   background-color:var(--dark-blue);
   font-size:2em;
   border-bottom:10px solid var(--red);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
 
+h1 {
+  text-align:center;
+}
+
+strong {
+  font-weight:bold;
+  font-style:italic;
+  animation: color-change 2s infinite;
+}
+
+@keyframes color-change {
+  0%{color:var(--tan)}
+  50%{color:var(--red)}
+  100%{color:var(--tan)}
 }
 
 
@@ -33,7 +51,7 @@ main {
 }
 
 #grid-container {
-  /* border:1px solid brown; */
+  border:1px solid brown;
   width:90%;
   height:70vh;
   margin: auto;
@@ -56,16 +74,19 @@ main {
   border-radius:10px;
 }
 
-#grid-item-products img {
-  border-radius:20px;
-  border:10px solid var(--red);
-}
+
 
 /* style images */
 .product {
   height:200px;
   width:195px;
   overflow:hidden;
+  border-radius:20px;
+  border:10px solid var(--red);
+}
+
+.product:hover {
+  border:10px solid var(--dark-blue);
 }
 
 /* paragraph display */
@@ -76,6 +97,9 @@ main {
   padding:20px;
   border: 10px solid var(--red);
   background-color:var(--tan);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
 
@@ -101,7 +125,13 @@ main {
   padding: 0 20px 20px 20px;
 }
 
-#display-results {
+#buttons {
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+}
+
+.button {
   color: var(--tan);
   background-color:var(--red);
   width:40%;
@@ -111,7 +141,15 @@ main {
   font-weight:bold;
   border:none;
   border-radius:5px;
+}
 
+.button a {
+  color:var(--tan);
+  text-decoration:none;
+}
+
+.button:hover {
+  background-color:var(--dark-blue);
 }
 
 #results-container {
@@ -139,4 +177,22 @@ footer {
   background-color:var(--dark-blue);
   font-size:1.25em;
   border-top:10px solid var(--red);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-end;
+}
+
+h6 {
+  margin: 1em;
+  font-style:italic;
+}
+
+
+/* results container on second page */
+
+#chart-container {
+  margin:15vh auto 15vh auto;
+  width:80vw;
+  height:70vh;
 }

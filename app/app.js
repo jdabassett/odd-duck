@@ -15,9 +15,10 @@ let productThree = document.querySelector("#product-three");
 let imageNames = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','water-can','wine-glass'];
 let imageExt = ['jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','jpg','png','jpg','jpg','jpg','jpg'];
 let arrayObjects = [];
+let arrayObjectsReturned = [];
 let threeNumbers = [];
 let totalViews = 0;
-let allowedViews = 5;
+let allowedViews = 25;
 
 let productDOM = [productOne,productTwo,productThree];
 
@@ -104,7 +105,14 @@ function addViews(title){
   }
 }
 
-// iterate to calculate percentage of clicks per view fo
+
+// save voting results in the localStorage
+function saveToLocalStorage(array){
+  let JSONArray = JSON.stringify(array);
+  localStorage.setItem('arrayObjectsStored',JSONArray);
+  arrayObjectsReturned =JSON.parse(localStorage.getItem('arrayObjectsStored'));
+
+}
 
 // render results
 function handlerShowResults(){
@@ -117,7 +125,7 @@ function handlerShowResults(){
       arrayVotes[i]=arrayObjects[i].clicked;
       arrayViews[i]=arrayObjects[i].shown;
     }
-    console.log(arrayNames,arrayVotes,arrayViews);
+
 
     let chartData = {
       type: 'bar',
@@ -145,6 +153,10 @@ function handlerShowResults(){
 
 
     new Chart(displayResults, chartData);
+
+    //store results in localStorage
+    saveToLocalStorage(arrayObjects);
+
     //remove event
     buttonResults.removeEventListener("click", handlerShowResults);
     //if voting hasn't finished
