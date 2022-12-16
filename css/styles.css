@@ -44,7 +44,11 @@ strong {
 
 /* main grid */
 main {
-  height:80vh;
+  height:83vh;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-content:center;
 }
 
 /* container for main */
@@ -162,4 +166,5 @@ h6 {
   flex-direction:column;
   justify-content:space-evenly;
   align-items:center;
+  margin-top:2em;
 }
