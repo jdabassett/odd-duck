@@ -27,6 +27,8 @@ header {
 
 h1 {
   text-align:center;
+  border-width: 11px;
+  /* border: dashed blue; */
 }
 
 strong {
@@ -46,17 +48,16 @@ strong {
 main {
   height:83vh;
   display:flex;
-  flex-direction:row;
+  flex-direction:column;
   justify-content:center;
-  align-content:center;
 }
 
 /* container for main */
 #container-total {
   width:80%; 
   height:65vh;
-  border-radius:10px;
-  margin:5vh auto 5vh auto;
+  border-radius:20px;
+  margin: 0 auto 0 auto;
   padding:20px;
   border: 10px solid var(--red);
   background-color:var(--tan);
@@ -157,14 +158,52 @@ h6 {
 
 /* results container on second page */
 #container-chart {
-  border:10px solid var(--red);
-  width:90%;
-  height:60%;
-  background-color:var(--tan);
+  width:80%; 
+  height:65vh;
   border-radius:20px;
+  padding:20px;
+  border: 10px solid var(--red);
+  background-color:var(--tan);
   display:flex;
   flex-direction:column;
   justify-content:space-evenly;
   align-items:center;
-  margin-top:2em;
+  margin: 0 auto 0 auto;
+}
+
+#results-container {
+  width:300px;
+  height:225px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
+  align-items:center;
+}
+
+@media screen and (min-width:600px){
+  #results-container {
+    width:400px;
+    height:300px;
+  }
+}
+
+@media screen and (min-width:900px){
+  #results-container {
+    width:600px;
+    height:450px;
+  }
+}
+
+@media screen and (min-width:1200px){
+  #results-container {
+    width:800px;
+    height:600px;
+  }
+}
+
+@media screen and (min-width:1500px){
+  #results-container {
+    width:1000px;
+    height:750px;
+  }
 }
